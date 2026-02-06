@@ -47,16 +47,3 @@ module "ecr" {
   source    = "./modules/ecr"
   ecr_names = var.ecr_names
 }
-
-module "argocd" {
-  source                             = "./modules/argocd"
-  cluster_name                       = module.eks.eks_cluster_name
-  cluster_endpoint                   = module.eks.eks_cluster_endpoint
-  cluster_certificate_authority_data = module.eks.eks_cluster_certificate_authority_data
-
-  namespace            = var.argocd_namespace
-  argocd_chart_version = var.argocd_chart_version
-  service_type         = var.argocd_service_type
-
-  depends_on = [module.eks]
-}
