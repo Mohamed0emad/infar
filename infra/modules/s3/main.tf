@@ -2,7 +2,7 @@ resource "aws_s3_bucket" "reddit_clone_bucket" {
   bucket        = var.s3_bucket_name
   force_destroy = true  
   tags = {
-    Name        = "reddit-clone-bucket"
+    Name        = "reddit-clone-bucket01"
     Environment = "Dev"
   }
 }
