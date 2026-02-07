@@ -8,7 +8,7 @@ resource "aws_s3_bucket" "reddit_clone_bucket" {
 }
 
 resource "aws_s3_bucket_ownership_controls" "reddit_clone_bucket_ownership_controls" {
-  bucket = aws_s3_bucket.reddit_clone_bucket.id
+  bucket = aws_s3_bucket.reddit_clone_bucket01.id
 
   rule {
     object_ownership = "BucketOwnerEnforced"
@@ -16,7 +16,7 @@ resource "aws_s3_bucket_ownership_controls" "reddit_clone_bucket_ownership_contr
 }
 
 resource "aws_s3_bucket_public_access_block" "reddit_clone_bucket_public_access_block" {
-  bucket = aws_s3_bucket.reddit_clone_bucket.id
+  bucket = aws_s3_bucket.reddit_clone_bucket01.id
 
   block_public_acls       = true
   ignore_public_acls      = true
@@ -25,7 +25,7 @@ resource "aws_s3_bucket_public_access_block" "reddit_clone_bucket_public_access_
 }
 
 resource "aws_s3_bucket_policy" "public_read_static_and_media" {
-  bucket = aws_s3_bucket.reddit_clone_bucket.id
+  bucket = aws_s3_bucket.reddit_clone_bucket01.id
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -35,8 +35,8 @@ resource "aws_s3_bucket_policy" "public_read_static_and_media" {
         Principal = "*"
         Action    = "s3:GetObject"
         Resource = [
-          "arn:aws:s3:::${aws_s3_bucket.reddit_clone_bucket.bucket}/staticfiles/*",
-          "arn:aws:s3:::${aws_s3_bucket.reddit_clone_bucket.bucket}/media/*"
+          "arn:aws:s3:::${aws_s3_bucket.reddit_clone_bucket.bucket01}/staticfiles/*",
+          "arn:aws:s3:::${aws_s3_bucket.reddit_clone_bucket.bucket01}/media/*"
         ]
       }
     ]
@@ -44,7 +44,7 @@ resource "aws_s3_bucket_policy" "public_read_static_and_media" {
 }
 
 resource "aws_s3_bucket_versioning" "reddit_clone_bucket_versioning" {
-  bucket = aws_s3_bucket.reddit_clone_bucket.id
+  bucket = aws_s3_bucket.reddit_clone_bucket01.id
 
   versioning_configuration {
     status = "Enabled"
@@ -52,7 +52,7 @@ resource "aws_s3_bucket_versioning" "reddit_clone_bucket_versioning" {
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "reddit_clone_bucket_sse" {
-  bucket = aws_s3_bucket.reddit_clone_bucket.id
+  bucket = aws_s3_bucket.reddit_clone_bucket01.id
 
   rule {
     apply_server_side_encryption_by_default {
