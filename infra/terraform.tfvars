@@ -1,6 +1,6 @@
 ecr_names = ["reddit-backend", "reddit-frontend"]
 
-s3_bucket_name = "reddit-clone-s3-media"
+s3_bucket_name = "reddit-clone-s3-media0"
 
 db_name = "reddit-clone-db"
 
